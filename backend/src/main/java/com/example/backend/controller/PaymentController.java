@@ -15,7 +15,7 @@ public class PaymentController {
     @Autowired
     PaymentService paymentService;
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/payment/add")
     public ResponseEntity<Payment> addEvent(@RequestBody Payment pay) {
 
@@ -23,7 +23,7 @@ public class PaymentController {
         return new ResponseEntity<>(obj,HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/adminuser/payments/count")
     public ResponseEntity<Integer> getPaymentCount() {
         int count = paymentService.getAllPayments().size(); // Assuming getAllPayments() returns a list of payments
@@ -31,14 +31,14 @@ public class PaymentController {
     }
 
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/payment/getall")
     public ResponseEntity<List<Payment>> getAllPayments() {
         List<Payment> payments = paymentService.getAllPayments();
         return new ResponseEntity<>(payments, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/payment/{paymentId}")
     public ResponseEntity<Payment> getPaymentById(@PathVariable long paymentId) {
         Payment payment = paymentService.getPaymentById(paymentId);
@@ -46,7 +46,7 @@ public class PaymentController {
                                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/adminuser/adminpayment/{transaction}")
     public ResponseEntity<Boolean> deletePayment(@PathVariable("transaction") String transaction) {
         boolean deleted = paymentService.deletePayment(transaction);

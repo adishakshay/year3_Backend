@@ -23,7 +23,7 @@ public class ContactController {
     @Autowired
     ContactService cs;
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/contact/add")
     public ResponseEntity<Contact> adddata(@RequestBody Contact c)
     {
@@ -32,7 +32,7 @@ public class ContactController {
     }
 
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/contact/getid/{contacId}")
     public ResponseEntity<Contact> get(@PathVariable("contactId") int contactId )
     {
@@ -47,7 +47,7 @@ public class ContactController {
         }
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/contact/getall")
     public ResponseEntity<List<Contact>> getAll()
     {
@@ -77,7 +77,7 @@ public class ContactController {
     // }
     
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/contact/update/{contactId}")
     public ResponseEntity<Contact> putMethod(@PathVariable("contactId") int contactId,@RequestBody Contact c)
     {
@@ -88,7 +88,7 @@ public class ContactController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/contact/delete/{contactId}")
     public ResponseEntity<Boolean> delete(@PathVariable("contactId") int contactId)
     {

@@ -19,7 +19,7 @@ public class SignupController {
     @Autowired
     SignupService ss;
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/signup/add")
     public ResponseEntity<?> post(@RequestBody Signup sp) {
     // Lowercase the email and check for existence
@@ -38,7 +38,7 @@ public class SignupController {
         return new ResponseEntity<>(obj, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/signup/login")
     public ResponseEntity<?> login(@RequestBody Signup loginRequest) {
         Optional<Signup> existingUser = ss.findByEmail(loginRequest.getEmail().toLowerCase());
@@ -65,7 +65,7 @@ public class SignupController {
         }
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/settings/{email}")
     public ResponseEntity<String> updatePasswordByEmail(
         @PathVariable("email") String email, 
@@ -95,7 +95,7 @@ public class SignupController {
         }
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/adminuser/users/{email}")
     public ResponseEntity<String> updateUser(
         @PathVariable("email") String email, 
@@ -122,7 +122,7 @@ public class SignupController {
     }
     
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/signup/getByEmail/{email}")
     public ResponseEntity<Signup> getByEmail(@PathVariable("email") String email) {
         Optional<Signup> user = ss.findByEmail(email.toLowerCase());
@@ -133,7 +133,7 @@ public class SignupController {
         }
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/signup/getid/{signupId}")
     public ResponseEntity<Signup> getById(@PathVariable("signupId") int signupId) {
         try {
@@ -144,7 +144,7 @@ public class SignupController {
         }
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/signup/getall")
     public ResponseEntity<List<Signup>> getAll() {
         try {
@@ -155,7 +155,7 @@ public class SignupController {
         }
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/adminuser/register/{signId}")
     public ResponseEntity<Signup> putMethod(@PathVariable("signId") int signId, @RequestBody Signup sp) {
         if (ss.updateSignup(signId, sp) == null) {
@@ -164,14 +164,14 @@ public class SignupController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/adminuser/users/count")
     public ResponseEntity<Integer> getUserCount() {
         int count = ss.getAll().size(); // Assuming getAll() returns a list of users
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "https://sage-syrniki-02c3b1.netlify.app")
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/adminuser/user/{email}")
     public ResponseEntity<Boolean> deleteMethod(@PathVariable("email") String email) {
         Optional<Signup> user = ss.findByEmail(email.toLowerCase());
