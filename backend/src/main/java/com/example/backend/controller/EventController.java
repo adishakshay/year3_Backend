@@ -28,7 +28,7 @@ public class EventController {
     @Autowired
     EventService es;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://ecofyevent.netlify.app")
     @PostMapping("/event/add")
     public ResponseEntity<Event> addEvent(@RequestBody Event ev) {
 
@@ -36,7 +36,7 @@ public class EventController {
         return new ResponseEntity<>(obj,HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://ecofyevent.netlify.app")
     @GetMapping("/event/getId/{eventId}")
     public ResponseEntity<Event> get(@PathVariable("eventId") int eventId) {
 
@@ -50,7 +50,7 @@ public class EventController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://ecofyevent.netlify.app")
     @PostMapping("/event/verify")
     public ResponseEntity<Boolean> verifyEvent(@RequestBody Event ev) {
         try {
@@ -68,7 +68,7 @@ public class EventController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://ecofyevent.netlify.app")
     @GetMapping("/adminuser/events/count")
     public ResponseEntity<Integer> getEventCount() {
         int count = es.getAll().size(); // Assuming getAll() returns a list of events
@@ -76,7 +76,7 @@ public class EventController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://ecofyevent.netlify.app")
     @GetMapping("/event/getAll")
     public ResponseEntity<List<Event>> getAll() 
     {
@@ -91,7 +91,7 @@ public class EventController {
         }
     }
     
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://ecofyevent.netlify.app")
     @PutMapping("/adminuser/register/{eventId}")
     public ResponseEntity<Event> putMethod(@PathVariable("eventId") int eventId, @RequestBody Event ev) {
         ev.setEventId(eventId); // Ensure the eventId in the URL is set in the request body
@@ -101,7 +101,7 @@ public class EventController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
  
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "https://ecofyevent.netlify.app")
     @DeleteMapping("/adminuser/register/{eventId}")
     public ResponseEntity<Boolean> deleteMethod(@PathVariable("eventId") int eventId) {
         System.out.println("Received request to delete event with ID: " + eventId); // Add this line
