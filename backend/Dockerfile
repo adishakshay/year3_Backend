@@ -7,26 +7,14 @@
 # EXPOSE 8080
 # ENTRYPOINT [ "java","-jar","demo.jar"]
 
-# Stage 1: Build the application
-FROM maven:3.8.5-openjdk-17 AS build
-
-# Set working directory to /app
+# Stage 1: Build
+FROM maven:3.9.4-eclipse-temurin-21 AS build
 WORKDIR /app
-
-# Copy only the contents of backend/
 COPY backend/ /app
-
-# Run Maven to build the app
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run the application
-FROM openjdk:17.0.1-jdk-slim
-
-# Copy built jar from the build stage
+# Stage 2: Runtime
+FROM eclipse-temurin:21-jdk
 COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar demo.jar
-
-# Expose the port the app runs on
 EXPOSE 8080
-
-# Run the application
 ENTRYPOINT ["java", "-jar", "demo.jar"]
